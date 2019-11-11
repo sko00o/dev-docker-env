@@ -38,5 +38,5 @@ services:
 volumes:
   postgresqldata:
   mysqldata:
-  resiadata:
+  redisdata:
 
