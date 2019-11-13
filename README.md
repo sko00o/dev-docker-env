@@ -6,6 +6,12 @@
 docker-compose up -d
 ```
 
+start kafka
+
+```sh
+docker-compose -f kafka-zk-single.yml up -d
+```
+
 ## Database
 
 DSN:
