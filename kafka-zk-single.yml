@@ -18,6 +18,7 @@ services:
 
   kafka1:
     image: confluentinc/cp-kafka:5.3.1
+    restart: always
     hostname: kafka
     ports:
       - 9092:9092
