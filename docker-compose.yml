@@ -1,13 +1,20 @@
 version: "3"
 
 services:
+        #dev-env:
+        #  depends_on:
+        #    - mysql
+        #    - mysql57
+        #    - redis
+        #    - postgresql
+        #    - mosquitto
+ 
   postgresql:
     hostname: pg
     restart: always
     image: postgres:9.6-alpine
     ports:
       - 15432:5432
-      - 5432:5432
     volumes:
       - ./scripts/postgresql:/docker-entrypoint-initdb.d
       - postgresqldata:/var/lib/postgresql/data
@@ -18,7 +25,6 @@ services:
     image: mysql:8.0
     ports:
       - 13306:3306
-      - 3306:3306
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: toor
@@ -26,13 +32,24 @@ services:
       - ./scripts/mysql:/docker-entrypoint-initdb.d
       - mysqldata:/var/lib/mysql
 
+  mysql57:
+    hostname: mysql57
+    restart: always
+    image: mysql:5.7
+    ports:
+      - 13307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+    volumes:
+      - mysqldata5:/var/lib/mysql
+      - ./scripts/mysql:/docker-entrypoint-initdb.d
+
   redis:
     hostname: redis
     restart: always
     image: redis:5-alpine
     ports:
       - 16379:6379
-      - 6379:6379
     volumes:
       - redisdata:/data
 
@@ -42,10 +59,10 @@ services:
     image: eclipse-mosquitto
     ports:
       - 11883:1883
-      - 1883:1883
 
 volumes:
   postgresqldata:
   mysqldata:
+  mysqldata5:
   redisdata:
 
