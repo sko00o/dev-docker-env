@@ -12,6 +12,8 @@ start kafka
 docker-compose -f kafka-zk-single.yml up -d
 ```
 
+> You need to set `DOCKER_HOST_IP` properly for remote deploy.
+
 ## Database
 
 DSN:
